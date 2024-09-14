@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="treeCmp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/treeCmp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

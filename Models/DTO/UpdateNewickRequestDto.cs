@@ -1,0 +1,28 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TreeCmpWebAPI.Models.DTO
+{
+    public class UpdateNewickRequestDto
+    {
+        public string? comparisionMode { get; set; }
+
+        public string? newickFirstString { get; set; }
+
+        public string? newickSecondString { get; set; }
+
+        public string? windowWidth { get; set; }
+
+        public string[]? rootedMetrics { get; set; }
+
+        public string[]? unrootedMetrics { get; set; }
+
+        public bool? normalizedDistances { get; set; } = false;
+
+        public bool? pruneTrees { get; set; } = false;
+
+        public bool? includeSummary { get; set; } = false;
+
+        public bool? zeroWeightsAllowed { get; set; } = false;
+
+    }
+}

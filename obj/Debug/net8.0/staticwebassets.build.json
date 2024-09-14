@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "TfPzTMoQstKGBmPzsP6td2UDziFNo7RCMBiWV/g/5sQ=",
+  "Source": "TreeCmpWebAPI",
+  "BasePath": "_content/TreeCmpWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "TreeCmpWebAPI\\wwwroot",
+      "Source": "TreeCmpWebAPI",
+      "ContentRoot": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\",
+      "BasePath": "_content/TreeCmpWebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\config.json",
+      "SourceId": "TreeCmpWebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\",
+      "BasePath": "_content/TreeCmpWebAPI",
+      "RelativePath": "config.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\config.json"
+    },
+    {
+      "Identity": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\config.xml",
+      "SourceId": "TreeCmpWebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\",
+      "BasePath": "_content/TreeCmpWebAPI",
+      "RelativePath": "config.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\config.xml"
+    }
+  ]
+}

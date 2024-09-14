@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\config.json",
+      "PackagePath": "staticwebassets\\config.json"
+    },
+    {
+      "Id": "C:\\Users\\adams\\eng\\TreeCmp-API\\TreeCmpWebAPI\\TreeCmpWebAPI\\wwwroot\\config.xml",
+      "PackagePath": "staticwebassets\\config.xml"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TreeCmpWebAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TreeCmpWebAPI.props",
+      "PackagePath": "build\\TreeCmpWebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TreeCmpWebAPI.props",
+      "PackagePath": "buildMultiTargeting\\TreeCmpWebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TreeCmpWebAPI.props",
+      "PackagePath": "buildTransitive\\TreeCmpWebAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
