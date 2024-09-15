@@ -1,82 +1,78 @@
 ﻿using TreeCmpWebAPI.Models.DTO;
+using TreeCmpWebAPI.Models.Domain;
 
 public class CommandBuilder
 {
     private readonly string jarFilePath = "treeCmp.jar"; // Ścieżka do JAR
 
-    public string BuildCommand(TreeCmpRequestDto requestDto)
+    public string BuildCommand(TreeCmp request)
     {
         // Budowanie komendy dla trybu porównania
-        string comparisonModeCommand = GetComparisonModeCommand(requestDto);
+        string comparisonModeCommand = GetComparisonModeCommand(request);
 
-        // Nazwy plików, które zostały zapisane na dysku
-        string inputFile = "newick_first_tree.newick"; // Plik wejściowy
-        string outputFile = "Output.txt";              // Plik wynikowy
-        string? refTreeFile = requestDto.ComparisonMode == "-r" ? "newick_second_tree.newick" : null; // Plik referencyjny, jeśli tryb -r
+        string inputFile = "newick_first_tree.newick"; 
+        string outputFile = "Output.txt";  
+        string? refTreeFile = request.comparisionMode == "-r" ? "newick_second_tree.newick" : null; 
 
-        // Łączenie metryk w jeden ciąg znaków, oddzielone spacjami
-        string metrics = string.Join(" ", requestDto.Metrics.Where(m => !string.IsNullOrEmpty(m)));
+        string metrics = string.Join(" ", request.Metrics.Where(m => !string.IsNullOrEmpty(m)));
 
-        // Budowanie podstawowej komendy
+
         var command = $"java -jar {jarFilePath} {comparisonModeCommand}";
 
-        // Dodanie pliku referencyjnego tylko raz w odpowiednim miejscu (jeśli tryb to -r)
-        if (requestDto.ComparisonMode == "-r" && !string.IsNullOrEmpty(refTreeFile))
+        if (request.comparisionMode == "-r" && !string.IsNullOrEmpty(refTreeFile))
         {
             command += $" {refTreeFile}";
         }
 
-        // Dodanie pozostałych argumentów (metryki, pliki wejściowe/wyjściowe)
         command += $" -d {metrics} -i {inputFile} -o {outputFile}";
 
-        // Dodanie flag booleanowych
-        if (requestDto.normalizedDistances == true)
+
+        if (request.normalizedDistances == true)
         {
-            command += " -N";  // Znormalizowane odległości
+            command += " -N";  
         }
 
-        if (requestDto.pruneTrees == true)
+        if (request.pruneTrees == true)
         {
-            command += " -P";  // Prune compared trees
+            command += " -P";  
         }
 
-        if (requestDto.includeSummary == true)
+        if (request.includeSummary == true)
         {
-            command += " -I";  // Include summary
+            command += " -I";  
         }
 
-        if (requestDto.zeroWeightsAllowed == true)
+        if (request.zeroWeightsAllowed == true)
         {
-            command += " -W";  // Allow zero value weights
+            command += " -W";  
         }
 
         return command;
     }
 
-    // Metoda pomocnicza do generowania komendy trybu porównania
-    private string GetComparisonModeCommand(TreeCmpRequestDto requestDto)
+    private string GetComparisonModeCommand(TreeCmp request)
     {
-        switch (requestDto.ComparisonMode)
+        switch (request.comparisionMode)
         {
             case "-s":
-                return "-s"; // Tryb -s (overlapping pair comparison)
+                return "-s"; 
 
             case "-w":
-                if (string.IsNullOrEmpty(requestDto.windowWidth))
+                if (string.IsNullOrEmpty(request.windowWidth))
                 {
                     throw new ArgumentException("Rozmiar okna (WindowWidth) jest wymagany dla trybu -w");
                 }
-                return $"-w {requestDto.windowWidth}"; // Tryb -w z szerokością okna
+                return $"-w {request.windowWidth}"; 
 
             case "-m":
-                return "-m"; // Tryb -m (matrix comparison)
+                return "-m"; 
 
             case "-r":
-                if (string.IsNullOrEmpty(requestDto.NewickSecondString))
+                if (string.IsNullOrEmpty(request.newickSecondString))
                 {
                     throw new ArgumentException("Plik referencyjny (NewickSecondString) jest wymagany dla trybu -r");
                 }
-                return "-r"; // Tryb -r (reference tree mode)
+                return "-r";
 
             default:
                 throw new ArgumentException("Nieprawidłowy tryb porównania");

@@ -28,5 +28,7 @@ namespace TreeCmpWebAPI.Models.Domain
 
         public bool? bifurcationTreesOnly { get; set; }
 
+
+        public string UserName { get; set; }
     }
 }

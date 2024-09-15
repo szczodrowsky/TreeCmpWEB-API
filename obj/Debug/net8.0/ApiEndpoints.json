@@ -59,9 +59,9 @@
   },
   {
     "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
-    "Method": "GetById",
+    "Method": "Delete",
     "RelativePath": "api/Newick/{id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -96,9 +96,9 @@
   },
   {
     "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
-    "Method": "Delete",
+    "Method": "GetById",
     "RelativePath": "api/Newick/{id}",
-    "HttpMethod": "DELETE",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [

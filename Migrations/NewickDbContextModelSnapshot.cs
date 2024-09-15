@@ -28,6 +28,10 @@ namespace TreeCmpWebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool?>("bifurcationTreesOnly")
                         .HasColumnType("bit");
 
@@ -66,6 +70,37 @@ namespace TreeCmpWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Newicks");
+                });
+
+            modelBuilder.Entity("TreeCmpWebAPI.Models.Domain.NewickResponseFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FileContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ResponseFiles", (string)null);
                 });
 #pragma warning restore 612, 618
         }

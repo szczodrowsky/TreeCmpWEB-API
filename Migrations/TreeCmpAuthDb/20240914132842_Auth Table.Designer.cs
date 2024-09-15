@@ -12,8 +12,8 @@ using TreeCmpWebAPI.Data;
 namespace TreeCmpWebAPI.Migrations.TreeCmpAuthDb
 {
     [DbContext(typeof(TreeCmpAuthDbContext))]
-    [Migration("20240828215117_Auth")]
-    partial class Auth
+    [Migration("20240914132842_Auth Table")]
+    partial class AuthTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

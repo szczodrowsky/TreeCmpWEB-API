@@ -14,5 +14,6 @@ namespace TreeCmpWebAPI.Repositories
 
         Task<Newick?> DeleteAsync(Guid id);
 
+        Task SaveOutputFileAsync(NewickResponseFile newickResponseFile);
     }
 }

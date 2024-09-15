@@ -87,6 +87,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = true;
 });
 
+
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
         options.TokenValidationParameters = new TokenValidationParameters

@@ -58,10 +58,10 @@ namespace TreeCmpWebAPI.Repositories
 
 
 
-        public async Task <Newick?>DeleteAsync(Guid id)
+        public async Task<Newick?> DeleteAsync(Guid id)
         {
             var existingNewick = await dbContext.Newicks.FirstOrDefaultAsync(x => x.Id == id);
-            
+
             if (existingNewick == null)
             {
                 return null;
@@ -71,5 +71,11 @@ namespace TreeCmpWebAPI.Repositories
             await dbContext.SaveChangesAsync();
             return existingNewick;
         }
-    } 
+
+        public async Task SaveOutputFileAsync(NewickResponseFile newickResponseFile)
+        {
+            await dbContext.ResponseFiles.AddAsync(newickResponseFile);
+            await dbContext.SaveChangesAsync();
+        }
+    }
 }

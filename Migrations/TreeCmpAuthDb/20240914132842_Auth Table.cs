@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TreeCmpWebAPI.Migrations.TreeCmpAuthDb
 {
     /// <inheritdoc />
-    public partial class Auth : Migration
+    public partial class AuthTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

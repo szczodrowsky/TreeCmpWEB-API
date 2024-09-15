@@ -318,3 +318,4 @@ C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Miza
 C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Polly.dll
 C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\obj\Debug\net8.0\TreeCmpWebAPI.sourcelink.json

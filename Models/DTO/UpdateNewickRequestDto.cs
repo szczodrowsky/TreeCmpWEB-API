@@ -16,13 +16,14 @@ namespace TreeCmpWebAPI.Models.DTO
 
         public string[]? unrootedMetrics { get; set; }
 
-        public bool? normalizedDistances { get; set; } = false;
+        public bool? normalizedDistances { get; set; } 
 
-        public bool? pruneTrees { get; set; } = false;
+        public bool? pruneTrees { get; set; } 
 
-        public bool? includeSummary { get; set; } = false;
+        public bool? includeSummary { get; set; } 
 
-        public bool? zeroWeightsAllowed { get; set; } = false;
+        public bool? zeroWeightsAllowed { get; set; }
 
+        public bool? bifurcationTreesOnly { get; set; }
     }
 }

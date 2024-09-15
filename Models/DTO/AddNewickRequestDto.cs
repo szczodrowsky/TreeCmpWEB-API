@@ -24,12 +24,8 @@ namespace TreeCmpWebAPI.Models.DTO
 
         public bool? zeroWeightsAllowed { get; set; }
 
-        public bool? bifurcationTreesOnly { get; set; }
-
+        public bool? bifurcatingTreesOnly { get; set; }
 
     }
 }
 
-/////te metryki trzeba cos wymyśleć
-/// tak o to nie pójdzie
-/// 61 odcinek jak dodawać contexty dokłądnme

@@ -8,11 +8,15 @@ namespace TreeCmpWebAPI.Data
     public class NewickDbContext : DbContext
     {
         public NewickDbContext(DbContextOptions<NewickDbContext> dbContextOptions) : base(dbContextOptions)
-        { 
-          
+        {
+
         }
 
         public DbSet<Newick> Newicks { get; set; }
+
+        public DbSet<NewickResponseFile> ResponseFiles { get; set; } 
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +31,7 @@ namespace TreeCmpWebAPI.Data
             modelBuilder.Entity<Newick>()
                 .Property(e => e.unrootedMetrics)
                 .HasConversion(stringArrayConverter);
+            modelBuilder.Entity<NewickResponseFile>().ToTable("ResponseFiles");
         }
     }
 }

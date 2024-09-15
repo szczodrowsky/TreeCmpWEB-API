@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TreeCmpWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class CreatingNewickDatabase : Migration
+    public partial class Newicktab : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,11 +26,28 @@ namespace TreeCmpWebAPI.Migrations
                     pruneTrees = table.Column<bool>(type: "bit", nullable: true),
                     includeSummary = table.Column<bool>(type: "bit", nullable: true),
                     zeroWeightsAllowed = table.Column<bool>(type: "bit", nullable: true),
-                    bifurcationTreesOnly = table.Column<bool>(type: "bit", nullable: true)
+                    bifurcationTreesOnly = table.Column<bool>(type: "bit", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Newicks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ResponseFiles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileExtension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FilePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileContent = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ResponseFiles", x => x.Id);
                 });
         }
 
@@ -39,6 +56,9 @@ namespace TreeCmpWebAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Newicks");
+
+            migrationBuilder.DropTable(
+                name: "ResponseFiles");
         }
     }
 }

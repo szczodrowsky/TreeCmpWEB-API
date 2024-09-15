@@ -2,8 +2,6 @@
 {
     public class NewickDto
     {
-        public Guid Id { get; set; }
-
 
         public string? comparisionMode { get; set; }
 

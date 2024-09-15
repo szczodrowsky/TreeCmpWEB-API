@@ -42,6 +42,11 @@ namespace TreeCmpWebAPI.Repositories
             throw new NotImplementedException();
         }
 
+        public Task SaveOutputFileAsync(NewickResponseFile newickResponseFile)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Newick?> Update(Guid id, Newick newick)
         {
             throw new NotImplementedException();
