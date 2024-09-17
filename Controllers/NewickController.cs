@@ -26,7 +26,6 @@ namespace TreeCmpWebAPI.Controllers
         private readonly RabbitMqService _rabbitMqService;
         private readonly CommandBuilder _commandBuilder;
 
-
         public NewickController(NewickDbContext dbContext,
             INewickRepositories newickRepositories,
             IMapper mapper,
@@ -58,7 +57,7 @@ namespace TreeCmpWebAPI.Controllers
         }
 
         [HttpPost]
-
+        
         public async Task<IActionResult> Create([FromBody] AddNewickRequestDto addNewickRequestDto)
         {
 
@@ -92,7 +91,6 @@ namespace TreeCmpWebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            Console.WriteLine("Dane requestDto są prawidłowe. Kontynuujemy.");
             var uploadDirectory = Path.Combine("C:", "Users", "adams", "eng", "TreeCmp-API", "TreeCmpWebAPI", "TreeCmpWebAPI", "UploadedFiles", "TreeCmp", "bin");
             Directory.CreateDirectory(uploadDirectory);
 
@@ -109,13 +107,11 @@ namespace TreeCmpWebAPI.Controllers
 
             var outputFilePath = Path.Combine(uploadDirectory, "Output.txt");
 
-            // Połączenie metryk
             var allMetrics = requestDto.rootedMetrics.Concat(requestDto.unrootedMetrics)
                                 .Where(m => !string.IsNullOrEmpty(m))
                                 .ToArray();
             Console.WriteLine("Łączenie metryk zakończone pomyślnie.");
 
-            // Generowanie komendy
             var treeCmpDomain = mapper.Map<TreeCmp>(requestDto);
             treeCmpDomain.Metrics = allMetrics;
             treeCmpDomain.InputFile = inputFilePath;
@@ -157,7 +153,7 @@ namespace TreeCmpWebAPI.Controllers
                 FileContent = Convert.ToBase64String(fileBytes)
             };
             Console.WriteLine($"Wartość UserName przed zapisem: {treeCmpDomain.UserName}");
-            // Jeśli użytkownik jest zalogowany, zapisujemy plik w bazie danych
+
             if (!string.IsNullOrEmpty(treeCmpDomain.UserName))
             {
                 fileDto.UserName = treeCmpDomain.UserName;

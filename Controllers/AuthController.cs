@@ -19,8 +19,6 @@ namespace TreeCmpWebAPI.Controllers
             this.tokenRepository = tokenRepository;
         }
 
-
-        // POST: /api/Auth/Register
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto registerRequestDto)
@@ -36,7 +34,6 @@ namespace TreeCmpWebAPI.Controllers
 
             if (identityResult.Succeeded)
             {
-                // Add roles to this User
                 if (registerRequestDto.Roles != null && registerRequestDto.Roles.Any())
                 {
                     identityResult = await userManager.AddToRolesAsync(identityUser, registerRequestDto.Roles);
@@ -52,7 +49,6 @@ namespace TreeCmpWebAPI.Controllers
         }
 
 
-        // POST: /api/Auth/Login
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
@@ -65,12 +61,10 @@ namespace TreeCmpWebAPI.Controllers
 
                 if (checkPasswordResult)
                 {
-                    // Get Roles for this user
                     var roles = await userManager.GetRolesAsync(user);
 
                     if (roles != null)
                     {
-                        // Create Token
 
                         var jwtToken = tokenRepository.CreateJWTToken(user, roles.ToList());
 

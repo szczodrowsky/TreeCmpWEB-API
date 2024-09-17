@@ -1,15 +1,12 @@
-﻿using TreeCmpWebAPI.Models.DTO;
-using TreeCmpWebAPI.Models.Domain;
+﻿using TreeCmpWebAPI.Models.Domain;
 
 public class CommandBuilder
 {
-    private readonly string jarFilePath = "treeCmp.jar"; // Ścieżka do JAR
+    private readonly string jarFilePath = "treeCmp.jar"; 
 
     public string BuildCommand(TreeCmp request)
     {
-        // Budowanie komendy dla trybu porównania
         string comparisonModeCommand = GetComparisonModeCommand(request);
-
         string inputFile = "newick_first_tree.newick"; 
         string outputFile = "Output.txt";  
         string? refTreeFile = request.comparisionMode == "-r" ? "newick_second_tree.newick" : null; 

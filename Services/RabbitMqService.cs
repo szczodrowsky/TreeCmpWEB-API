@@ -13,10 +13,10 @@ namespace TreeCmpWebAPI.Services
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "localhost",  // Jeśli RabbitMQ działa lokalnie
-                Port = 5672,             // Port RabbitMQ
-                UserName = "guest",      // Domyślny login RabbitMQ
-                Password = "guest"       // Domyślne hasło RabbitMQ
+                HostName = "localhost",  
+                Port = 5672,            
+                UserName = "guest",  
+                Password = "guest" 
             };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
