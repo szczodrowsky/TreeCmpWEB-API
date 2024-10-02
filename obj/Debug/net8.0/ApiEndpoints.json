@@ -33,16 +33,6 @@
   },
   {
     "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
-    "Method": "GetAll",
-    "RelativePath": "api/Newick",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
     "Method": "Create",
     "RelativePath": "api/Newick",
     "HttpMethod": "POST",
@@ -112,6 +102,26 @@
   },
   {
     "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
+    "Method": "GetCombinedNewickData",
+    "RelativePath": "api/Newick/combined-newick",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
+    "Method": "GetAll",
+    "RelativePath": "api/Newick/InputData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TreeCmpWebAPI.Controllers.NewickController",
     "Method": "RunTreeCmp",
     "RelativePath": "api/Newick/run-treecmp",
     "HttpMethod": "POST",
@@ -122,6 +132,11 @@
         "Name": "requestDto",
         "Type": "TreeCmpWebAPI.Models.DTO.TreeCmpRequestDto",
         "IsRequired": true
+      },
+      {
+        "Name": "operationId",
+        "Type": "System.Guid",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

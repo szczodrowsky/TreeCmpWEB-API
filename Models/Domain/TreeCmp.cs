@@ -4,6 +4,8 @@ namespace TreeCmpWebAPI.Models.Domain
 {
     public class TreeCmp
     {
+        public Guid Id { get; set; }
+
         public string? comparisionMode { get; set; }
 
         public string? newickFirstString { get; set; }

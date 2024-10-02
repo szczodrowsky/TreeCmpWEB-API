@@ -32,6 +32,7 @@ namespace TreeCmpWebAPI.Data
                 .Property(e => e.unrootedMetrics)
                 .HasConversion(stringArrayConverter);
             modelBuilder.Entity<NewickResponseFile>().ToTable("ResponseFiles");
+
         }
     }
 }

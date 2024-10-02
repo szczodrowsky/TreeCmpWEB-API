@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TreeCmpWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+511f16eb2c07a2aeb007610a78141d155d03f720")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bba183f31101ba5de7cd125204bacf2fcd5b0586")]
 [assembly: System.Reflection.AssemblyProductAttribute("TreeCmpWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TreeCmpWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

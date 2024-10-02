@@ -42,7 +42,7 @@ namespace TreeCmpWebAPI.Controllers
         }
        
         [HttpGet]
-        [Authorize]
+        [Route("InputData")]
         public async Task<IActionResult> GetAll()
         {
             var userName = User.FindFirstValue(ClaimTypes.Name);
@@ -60,7 +60,7 @@ namespace TreeCmpWebAPI.Controllers
         
         public async Task<IActionResult> Create([FromBody] AddNewickRequestDto addNewickRequestDto)
         {
-
+            var operationId = Guid.NewGuid();
             var userName = User.FindFirstValue(ClaimTypes.Name);
             if (userName == null)
             {
@@ -68,6 +68,7 @@ namespace TreeCmpWebAPI.Controllers
             }
             var newickDomainModel = mapper.Map<Newick>(addNewickRequestDto);
             newickDomainModel.UserName = userName;
+            newickDomainModel.OperationId = operationId;
 
             await newickRepositories.CreateAsync(newickDomainModel);
 
@@ -76,14 +77,16 @@ namespace TreeCmpWebAPI.Controllers
             var email = User.FindFirstValue(ClaimTypes.Email);
 
             Console.WriteLine($"UserId: {userName}, Email: {email}");
-            return CreatedAtAction(nameof(GetById), new { id = newickDomainModel.Id }, newickDto);
+            return CreatedAtAction(nameof(GetById), new { id = newickDomainModel.Id }, new { newickDto, operationId });
         }
 
 
         [HttpPost]
         [Route("run-treecmp")]
-        public async Task<IActionResult> RunTreeCmp([FromBody] TreeCmpRequestDto requestDto)
+        public async Task<IActionResult> RunTreeCmp([FromBody] TreeCmpRequestDto requestDto, [FromQuery] Guid operationId)
         {
+           
+            Console.WriteLine($"Received OperationId: {operationId}");
 
             if (!ModelState.IsValid)
             {
@@ -97,7 +100,7 @@ namespace TreeCmpWebAPI.Controllers
 
             var inputFilePath = Path.Combine(uploadDirectory, "newick_first_tree.newick");
             System.IO.File.WriteAllText(inputFilePath, requestDto.newickFirstString);
-
+            
             string? referenceFilePath = null;
             if (requestDto.comparisionMode == "-r" && !string.IsNullOrEmpty(requestDto.newickSecondString))
             {
@@ -117,7 +120,10 @@ namespace TreeCmpWebAPI.Controllers
             treeCmpDomain.InputFile = inputFilePath;
             treeCmpDomain.RefTreeFile = referenceFilePath;
             treeCmpDomain.OutputFile = outputFilePath;
+            treeCmpDomain.OutputFile = outputFilePath;
             treeCmpDomain.UserName = User?.FindFirstValue(ClaimTypes.Email);
+
+            Console.WriteLine($"Mapped TreeCmp Domain: Metrics Count = {treeCmpDomain.Metrics.Length}, InputFile = {treeCmpDomain.InputFile}, UserName = {treeCmpDomain.UserName}, OperationId = {operationId}");
 
             string command = _commandBuilder.BuildCommand(treeCmpDomain);
 
@@ -145,12 +151,14 @@ namespace TreeCmpWebAPI.Controllers
             var fileBytes = await System.IO.File.ReadAllBytesAsync(outputFilePath);
             Console.WriteLine("Odczytano plik wynikowy.");
 
+
+           
             var fileDto = new NewickResponseFile
             {
                 FileName = Path.GetFileName(outputFilePath),
-                FileExtension = Path.GetExtension(outputFilePath),
-                FilePath = outputFilePath,
-                FileContent = Convert.ToBase64String(fileBytes)
+                FileContent = Convert.ToBase64String(fileBytes),
+                OperationId = operationId
+
             };
             Console.WriteLine($"Wartość UserName przed zapisem: {treeCmpDomain.UserName}");
 
@@ -188,11 +196,40 @@ namespace TreeCmpWebAPI.Controllers
                 Message = "Zadanie zostało przetworzone",
                 FileName = fileDto.FileName,
                 FileContent = fileDto.FileContent,
+                OperationId = operationId,
                 InputFilePath = inputFilePath,
                 ReferenceFilePath = referenceFilePath,
                 OutputFilePath = outputFilePath
             });
         }
+
+
+        [HttpGet("combined-newick")]
+        public async Task<IActionResult> GetCombinedNewickData()
+        {
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                return Unauthorized(new { message = "User not authenticated" });
+            }
+
+            var combinedData = await newickRepositories.GetAllFinalRecordsAsync(userName);
+
+
+            if (combinedData == null || !combinedData.Any())
+            {
+                return NotFound(new { message = "No records found" });
+            }
+
+            return Ok(combinedData);
+        }
+
+
+
+
+
+
 
         /// Może zostanie
         [HttpDelete]

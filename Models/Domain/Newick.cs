@@ -6,6 +6,10 @@ namespace TreeCmpWebAPI.Models.Domain
     {
         public Guid Id { get; set; }
 
+        public Guid OperationId { get; set; }
+
+        public string UserName { get; set; }
+
         public string? comparisionMode { get; set; } 
 
         public string? newickFirstString { get; set; }
@@ -28,7 +32,5 @@ namespace TreeCmpWebAPI.Models.Domain
 
         public bool? bifurcationTreesOnly { get; set; }
 
-
-        public string UserName { get; set; }
     }
 }

@@ -4,6 +4,7 @@ namespace TreeCmpWebAPI.Models.DTO
 {
     public class TreeCmpRequestDto
     {
+
         public string? comparisionMode { get; set; }
 
         public string? newickFirstString { get; set; }

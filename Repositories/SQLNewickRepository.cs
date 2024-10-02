@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using TreeCmpWebAPI.Data;
 using TreeCmpWebAPI.Models.Domain;
+using TreeCmpWebAPI.Models.DTO;
 
 namespace TreeCmpWebAPI.Repositories
 {
@@ -23,6 +25,31 @@ namespace TreeCmpWebAPI.Repositories
         {
             return await dbContext.Newicks.FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<List<CombinedNewickData>> GetAllFinalRecordsAsync(string username)
+        {
+            // Tworzymy zapytanie, aby pobrać dane tylko dla danego użytkownika
+            var query = dbContext.Newicks.AsQueryable()
+                                         .Where(n => n.UserName == username);
+
+            // Wykonujemy połączenie (join) z ResponseFiles na podstawie OperationId
+            var combinedData = await (from newick in query
+                                      join responseFile in dbContext.ResponseFiles
+                                      on newick.OperationId equals responseFile.OperationId
+                                      select new CombinedNewickData
+                                      {
+                                          OperationId = newick.OperationId,
+                                          newickFirstString = newick.newickFirstString,
+                                          newickSecondString = newick.newickSecondString,
+                                          FileContent = responseFile.FileContent,
+                                         
+                                      }).ToListAsync();
+
+            return combinedData;
+        }
+
+
+
 
         public async Task<Newick> CreateAsync(Newick newick)
         {
