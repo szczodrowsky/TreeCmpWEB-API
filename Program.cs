@@ -5,15 +5,15 @@ using TreeCmpWebAPI.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using TreeCmpWebAPI.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using TreeCmpWebAPI.Models.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Konfiguracja Serilog
 var logger = new LoggerConfiguration()
     .WriteTo.Console()
     .MinimumLevel.Information()
@@ -23,17 +23,18 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 builder.Services.AddHostedService<RabbitMqWorker>();
 
-// Dodanie konfiguracji CORS
+
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
         builder => builder
-            .WithOrigins("http://localhost:5173") // Adres Twojej aplikacji React
+            .WithOrigins("http://localhost:5173") 
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
 
-// Dodanie us³ug
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -87,6 +88,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = true;
 });
 
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 
 

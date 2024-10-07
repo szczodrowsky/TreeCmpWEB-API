@@ -319,3 +319,11 @@ C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Newt
 C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Polly.dll
 C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\RabbitMQ.Client.dll
 C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\obj\Debug\net8.0\TreeCmpWebAPI.sourcelink.json
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\MailKit.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\MimeKit.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Google.Apis.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\Google.Apis.Core.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\System.Management.dll
+C:\Users\adams\eng\TreeCmp-API\TreeCmpWebAPI\TreeCmpWebAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
