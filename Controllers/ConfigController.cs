@@ -12,7 +12,7 @@ public class ConfigController : ControllerBase
         _env = env;
     }
 
-    [HttpGet("config")]
+    [HttpGet("api/config")]
     public async Task<IActionResult> GetConfigFile()
     {
         var configPath = Path.Combine(_env.WebRootPath, "config.json");

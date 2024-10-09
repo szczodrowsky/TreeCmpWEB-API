@@ -57,7 +57,7 @@ namespace TreeCmpWebAPI.Controllers
         }
 
         [HttpPost]
-        
+        [Route("newick-db")]
         public async Task<IActionResult> Create([FromBody] AddNewickRequestDto addNewickRequestDto)
         {
             var operationId = Guid.NewGuid();
@@ -69,6 +69,7 @@ namespace TreeCmpWebAPI.Controllers
             var newickDomainModel = mapper.Map<Newick>(addNewickRequestDto);
             newickDomainModel.UserName = userName;
             newickDomainModel.OperationId = operationId;
+            newickDomainModel.Timestamp = DateTime.UtcNow; 
 
             await newickRepositories.CreateAsync(newickDomainModel);
 
@@ -157,7 +158,8 @@ namespace TreeCmpWebAPI.Controllers
             {
                 FileName = Path.GetFileName(outputFilePath),
                 FileContent = Convert.ToBase64String(fileBytes),
-                OperationId = operationId
+                OperationId = operationId,
+                FileGeneratedTimestamp = DateTime.UtcNow
 
             };
             Console.WriteLine($"Wartość UserName przed zapisem: {treeCmpDomain.UserName}");
@@ -223,43 +225,6 @@ namespace TreeCmpWebAPI.Controllers
             }
 
             return Ok(combinedData);
-        }
-
-
-
-
-
-
-
-        /// Może zostanie
-        [HttpDelete]
-        [Authorize]
-        [Route("{id:Guid}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
-        {
-            var newickDomainModel = await newickRepositories.DeleteAsync(id);
-
-            if (newickDomainModel == null)
-            {
-                return NoContent();
-            }
-            return Ok(mapper.Map<NewickDto>(newickDomainModel));
-        }
-        
-        //Raczej zbędne i polecą 
-        [HttpPut]
-        [Authorize]
-        [Route("{id:Guid}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateNewickRequestDto updateNewickRequestDto)
-        {
-
-            var newickDomainModel = mapper.Map<Newick>(updateNewickRequestDto);
-            newickDomainModel = await newickRepositories.UpdateAsync(id,newickDomainModel);
-            if (newickDomainModel == null)
-            { 
-                return NotFound();
-            }
-            return Ok(mapper.Map<NewickDto>(newickDomainModel));
         }
 
 

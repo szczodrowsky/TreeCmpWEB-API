@@ -8,6 +8,8 @@ namespace TreeCmpWebAPI.Models.Domain
 
         public Guid OperationId { get; set; }
 
+        public DateTime Timestamp { get; set; } = DateTime.UtcNow;
+
         public string UserName { get; set; }
 
         public string? comparisionMode { get; set; } 

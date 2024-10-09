@@ -9,8 +9,7 @@
 
         public string? FileContent {  get; set; }
 
-
-
+        public DateTime FileGeneratedTimestamp { get; set; } = DateTime.UtcNow;
 
     }
 }

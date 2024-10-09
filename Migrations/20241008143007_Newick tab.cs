@@ -17,6 +17,7 @@ namespace TreeCmpWebAPI.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OperationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     comparisionMode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     newickFirstString = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -43,7 +44,8 @@ namespace TreeCmpWebAPI.Migrations
                     OperationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FileContent = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FileContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileGeneratedTimestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

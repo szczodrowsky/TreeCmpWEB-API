@@ -28,11 +28,9 @@ namespace TreeCmpWebAPI.Repositories
 
         public async Task<List<CombinedNewickData>> GetAllFinalRecordsAsync(string username)
         {
-            // Tworzymy zapytanie, aby pobrać dane tylko dla danego użytkownika
             var query = dbContext.Newicks.AsQueryable()
                                          .Where(n => n.UserName == username);
 
-            // Wykonujemy połączenie (join) z ResponseFiles na podstawie OperationId
             var combinedData = await (from newick in query
                                       join responseFile in dbContext.ResponseFiles
                                       on newick.OperationId equals responseFile.OperationId
@@ -42,7 +40,7 @@ namespace TreeCmpWebAPI.Repositories
                                           newickFirstString = newick.newickFirstString,
                                           newickSecondString = newick.newickSecondString,
                                           FileContent = responseFile.FileContent,
-                                         
+                                          FileGeneratedTimestamp = responseFile.FileGeneratedTimestamp
                                       }).ToListAsync();
 
             return combinedData;

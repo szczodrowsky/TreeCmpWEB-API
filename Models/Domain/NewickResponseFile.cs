@@ -11,6 +11,8 @@ namespace TreeCmpWebAPI.Models.Domain
         public string UserName { get; set; } 
         public string FileContent { get; set; }
 
+        public DateTime FileGeneratedTimestamp { get; set; } = DateTime.UtcNow;
+
 
 
     }

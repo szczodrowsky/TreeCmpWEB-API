@@ -3,6 +3,7 @@
     public class NewickDto
     {
 
+        public DateTime Timestamp { get; set; }
         public string? comparisionMode { get; set; }
 
         public string? newickFirstString { get; set; }

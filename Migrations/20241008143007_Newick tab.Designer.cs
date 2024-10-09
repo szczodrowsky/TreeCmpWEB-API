@@ -12,8 +12,8 @@ using TreeCmpWebAPI.Data;
 namespace TreeCmpWebAPI.Migrations
 {
     [DbContext(typeof(NewickDbContext))]
-    [Migration("20240930183337_NewickResultFile tab")]
-    partial class NewickResultFiletab
+    [Migration("20241008143007_Newick tab")]
+    partial class Newicktab
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace TreeCmpWebAPI.Migrations
 
                     b.Property<Guid>("OperationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -87,6 +90,9 @@ namespace TreeCmpWebAPI.Migrations
                     b.Property<string>("FileContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FileGeneratedTimestamp")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FileName")
                         .IsRequired()
